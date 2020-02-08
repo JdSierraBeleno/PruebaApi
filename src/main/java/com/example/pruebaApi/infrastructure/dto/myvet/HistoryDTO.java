@@ -6,19 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import com.example.pruebaApi.infrastructure.dto.BaseEntity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name = "history")
-public class HistoryDTO {
+public class HistoryDTO extends BaseEntity {
 
-	private Integer id;
-	
+	private static final long serialVersionUID = 1L;
+
 	//TODO ValueObject String 100 
 	private String description;
 
@@ -32,4 +32,14 @@ public class HistoryDTO {
 	
 	@ManyToOne(targetEntity = PetDTO.class)
 	private PetDTO pet;
+	
+	public HistoryDTO(Integer id, Boolean state, String description, String remarks, Date date
+					, ServiceTypeDTO serviceType, PetDTO pet) {
+		super(id, state);
+		this.description = description;
+		this.remarks = remarks;
+		this.date = date;
+		this.serviceType = serviceType;
+		this.pet = pet;
+	}
 }

@@ -6,18 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import com.example.pruebaApi.infrastructure.dto.BaseEntity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name = "agend_service_type")
-public class AgendServiceTypeDTO 
+public class AgendServiceTypeDTO extends BaseEntity
 {
-	private Integer id;
+	private static final long serialVersionUID = 1L;
 
 	//TODO ValueObject Date 
 	private Date date;
@@ -26,6 +26,12 @@ public class AgendServiceTypeDTO
 	private AgendDTO pet;
 
 	@ManyToOne(targetEntity = ServiceTypeDTO .class)
-	private ServiceTypeDTO  serviceType ;
-
+	private ServiceTypeDTO  serviceType;
+	
+	public AgendServiceTypeDTO(Integer id, Boolean state, Date date, AgendDTO pet, ServiceTypeDTO  serviceType) {
+		super(id, state);
+		this.date = date;
+		this.pet = pet;
+		this.serviceType = serviceType;
+	}
 }
